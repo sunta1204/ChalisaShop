@@ -13,22 +13,22 @@
 
 	<!-- Navbar --> 
 	<nav class="navbar sticky-top navbar-light navbar-expand-lg" style="background-color: #747d8c;">
- 		<a class="navbar-brand text-light" href="#">ChalisaShop</a>
+ 		<a class="navbar-brand text-light btn btn-outline-dark" href="index.php">ChalisaShop</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
     	</button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
 		      <li class="nav-item active">
-		        <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+		        <button class="nav-link text-white btn btn-outline-dark mr-sm-2" href="index.php">Home <span class="sr-only">(current)</span></button>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link text-white" href="#">Link</a>
+		        <button class="nav-link btn btn-outline-dark text-white mr-sm-2" data-toggle="modal" data-target="#checkTrack">เช็คเลขพัสดุ</button>
 		      </li>
 		      <li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        <button class="nav-link dropdown-toggle text-white btn btn-outline-dark disabled" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
-		        </a>
+		        </button>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 		          <a class="dropdown-item" href="#">Action</a>
 		          <a class="dropdown-item" href="#">Another action</a>
@@ -52,6 +52,32 @@
 		    </div>
 		  </div>
 	</nav>
+
+	<!-- Modal Check Track -->
+	<form action="checkTrack/check_track.php" method="post">
+		<div class="modal fade" id="checkTrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 24px;">เช็คเลขพัสดุ</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="form-group">
+		      		<label class="text-primary" style="font-size: 20px;"> เลขคำสั่งซื้อของท่าน : </label>
+		      		<input type="text" name="track" placeholder="Track Number" required="" class="form-control">
+		      	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Submit</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
 
 	<!-- Modal Register -->
 	<form action="register.php" method="post">
@@ -142,19 +168,20 @@
 				</div>				
 			</div><br>
 			
-			
+			<div class="form-group">
+				<div class="col">
+					<button type="button" class="btn btn-success col-12" data-toggle="modal" data-target="#qrcode"> <i class="fas fa-university"></i>&nbsp; เลขที่บัญชี </button>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="text-primary col-sm-6" style="font-size: 18px; text-align: left;"> หลักฐานการโอนเงิน : </label>
 					<div class="col-sm-12">
 						<input type="file" name="proofPayment" class="form-control" required="" accept="image/jpeg , image/png" accept-charset="utf-8">
 					</div><br> 
 					<div class="col-sm-12"> 
-						<div class="form-row">
+						<div class="form-row">						
 							<div class="col">
-								<button type="button" class="btn btn-outline-success col-12" data-toggle="modal" data-target="#qrcode"> <i class="fas fa-university"></i>  เลขที่บัญชี </button>
-							</div>
-							<div class="col">
-								<button type="submit" class="btn btn-primary col-12"> <i class="fas fa-location-arrow"></i>  ส่งข้อมูล </button>
+								<button type="submit" class="btn btn-primary col-12"> <i class="fas fa-location-arrow"></i>&nbsp; ส่งข้อมูล </button>
 							</div>
 						</div>						
 					</div>
@@ -172,13 +199,13 @@
 					      </div>
 					      <div class="modal-body">
 					      	<div style="text-align: center;">
-						        <img src="img/1.png" style="max-height: 320px; max-width: 480px;"><br><br>
+						        <img src="img/1.jpg" style="max-height: 400px; max-width: 550px;"><br><br>
 						        -------------------------------------------
 						        <br><br>					        
-					        	<label class="text-primary" style="font-size: 20px;"> เลขที่บัญชี : 307-2-88822-6 </label><br>
-					        	<label class="text-primary" style="font-size: 20px;"> ชื่อบัญชี : นายสุริยพงศ์ มอญขาม </label><br>
-					        	<label class="text-primary" style="font-size: 20px;"> ธนาคาร : กสิกรไทย </label><br>
-					        	<label class="text-primary" style="font-size: 20px;"> พร้อมเพย์ : 086-0896847 </label><br><br>
+					        	<label class="text-primary" style="font-size: 20px;"> เลขที่บัญชี : 984-2-90274-9 </label><br>
+					        	<label class="text-primary" style="font-size: 20px;"> ชื่อบัญชี : นางสาวชาลิสา ชัยสิทธิ์ </label><br>
+					        	<label class="text-primary" style="font-size: 20px;"> ธนาคาร : กรุงไทย </label><br>
+					        	<label class="text-primary" style="font-size: 20px;"> พร้อมเพย์ : 061-969-9993 </label><br><br>
 					        	-------------------------------------------<br><br>
 					        </div>					        
 					      </div>

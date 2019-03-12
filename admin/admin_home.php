@@ -167,9 +167,9 @@ session_start();
 					      		<?php }elseif ($row['transport'] == 3) { ?>
 					      			<p class="card-text"> Kerry </p>
 					      		<?php }  ?>					      		
-					      		<p class="card-text form-inline mr-sm-2"> 
+					      		<p class="card-text form-inline "> 
 					      			<a href="order_detail.php?order_id=<?=$row['order_id']?>" target="_blank" class=" btn btn-outline-primary btn-lg mr-sm-2"> รายละเอียด </a> 
-					      			<a href="delete_order.php?order_id=<?=$row['order_id']?>" class="btn btn-outline-danger btn-lg mr-sm-2"> ลบรายการ </a>
+					      			<a href="delete_order.php?order_id=<?=$row['order_id']?>" class="btn btn-outline-danger btn-lg "> ลบรายการ </a>
 					      		</p>					      		
 					    	</div>					    	
 					</div>				  		  
