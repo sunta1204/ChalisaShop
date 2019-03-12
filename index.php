@@ -11,22 +11,27 @@
 </head>
 <body >
 
+	<?php 
+		require 'facebook_api.php';
+	?>	
+	
+
 	<!-- Navbar --> 
 	<nav class="navbar sticky-top navbar-light navbar-expand-lg" style="background-color: #747d8c;">
- 		<a class="navbar-brand text-light btn btn-outline-dark" href="index.php">ChalisaShop</a>
+ 		<a class="navbar-brand text-light btn btn-outline-dark mr-sm-2 mb-3" href="index.php">ChalisaShop</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
     	</button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
-		        <button class="nav-link text-white btn btn-outline-dark mr-sm-2" href="index.php">Home <span class="sr-only">(current)</span></button>
+		      <li class="nav-item active mr-sm-2 ">
+		        <button class="nav-link text-white btn btn-outline-dark mr-sm-2 mb-3" href="index.php">Home <span class="sr-only">(current)</span></button>
 		      </li>
-		      <li class="nav-item">
-		        <button class="nav-link btn btn-outline-dark text-white mr-sm-2" data-toggle="modal" data-target="#checkTrack">เช็คเลขพัสดุ</button>
+		      <li class="nav-item mr-sm-2 ">
+		        <button class="nav-link btn btn-outline-dark text-white mr-sm-2 mb-3" data-toggle="modal" data-target="#checkTrack">เช็คเลขพัสดุ</button>
 		      </li>
-		      <li class="nav-item dropdown">
-		        <button class="nav-link dropdown-toggle text-white btn btn-outline-dark disabled" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      <li class="nav-item dropdown mr-sm-2 ">
+		        <button class="nav-link dropdown-toggle text-white btn btn-outline-dark disabled mr-sm-2 mb-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
 		        </button>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -104,6 +109,7 @@
 
 		
 			<div class="container" style="background-color: #f5f6fa; padding-top: 50px;padding-bottom: 100px;">
+
 				<form action="uploadProof/uploadProof.php" method="post" enctype="multipart/form-data">
 			<?php 
 				if (!empty($_SESSION["order_success"])){ ?>
@@ -136,12 +142,21 @@
 			<div class="form-group" style="border: 5px solid; border-radius: 20px; border-color: white; padding: 10px;"> 
 				<label class="text-primary col-sm-12" style="font-size: 30px; text-align: center;"> คำสั่งซื้อ </label>
 			</div><br>
-			<div class="form-group">
-				<label class="text-primary col-sm-6" style="font-size: 18px; text-align: left;"> ชื่อ facebook : </label>
-				<div class="col-sm-12">
-					<input type="text" name="facebookName" class="form-control" placeholder="ชื่อ facebook" required="">
+							
+				<div class="form-group">
+					<label class="text-primary col-sm-12" style="font-size: 18px; text-align: left;"> ชื่อ facebook : </label>					
+						<div class="form-inline">
+							<?php if (isset($_SESSION['access_token'])) { ?>
+								<input type="text" name="facebookName" class="form-control col-sm-6 mr-sm-2 mb-3" placeholder="ชื่อ facebook" required="" value="<?=$_SESSION['access_token']?>">
+							<?php } else{ ?>
+								<input type="text" name="facebookName" class="form-control col-sm-6 mr-sm-2 mb-3" placeholder="ชื่อ facebook" required="">
+							<?php } ?>							
+							<a href="<?=$login_url?>" class="btn btn-primary col-sm-2 mr-sm-2 mb-3 disabled"><i class="fab fa-facebook-f"></i>&nbsp; Login Facebook </a>
+						</div>						
 				</div>
-			</div><br>
+
+				
+					
 
 			<div class="form-group">
 				<label class="text-primary col-sm-12" style="font-size: 18px; text-align: left;"> หลักฐานการ Confirm :  </label>

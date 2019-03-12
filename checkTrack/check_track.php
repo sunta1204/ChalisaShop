@@ -25,20 +25,20 @@
 
 	<!-- Navbar --> 
 	<nav class="navbar sticky-top navbar-light navbar-expand-lg" style="background-color: #747d8c;">
- 		<a class="navbar-brand text-light btn btn-outline-dark" href="../index.php">ChalisaShop</a>
+ 		<a class="navbar-brand text-light btn btn-outline-dark mr-sm-2 md-3" href="../index.php">ChalisaShop</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
     	</button>
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
-		        <button class="nav-link text-white btn btn-outline-dark mr-sm-2" href="index.php">Home <span class="sr-only">(current)</span></button>
+		      <li class="nav-item active mr-sm-2 md-3">
+		        <button class="nav-link text-white btn btn-outline-dark mr-sm-2 md-3" href="index.php">Home <span class="sr-only">(current)</span></button>
 		      </li>
-		      <li class="nav-item">
-		        <button class="nav-link btn btn-outline-dark text-white mr-sm-2" data-toggle="modal" data-target="#checkTrack">เช็คเลขพัสดุ</button>
+		      <li class="nav-item mr-sm-2 md-3">
+		        <button class="nav-link btn btn-outline-dark text-white mr-sm-2 md-3" data-toggle="modal" data-target="#checkTrack">เช็คเลขพัสดุ</button>
 		      </li>
-		      <li class="nav-item dropdown">
-		        <button class="nav-link dropdown-toggle text-white btn btn-outline-dark disabled" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      <li class="nav-item dropdown mr-sm-2 md-3">
+		        <button class="nav-link dropdown-toggle text-white btn btn-outline-dark disabled mr-sm-2 md-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
 		        </button>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -115,56 +115,77 @@
 	</form>
 
 	<div class="container" style="background-color: #f5f6fa; padding-top: 50px;padding-bottom: 100px;">
-		<table class="table table-hover">
-			<thead class="text-primary" style="font-size: 20px;">
+		<div class="form-inline ">
+			<table class="table table-hover col-md-6 ">			
 				<tr>
-					<th> เลขคำสั่งซื้อ </th>
-					<th> Facebook </th>
-					<th> การจัดส่ง </th>
-					<th> วันที่สั่ง </th>
+					<th class="text-primary" style="font-size: 18px;"> เลขคำสั่งซื้อ </th>					
 				</tr>
-			</thead>
-			<tbody>
 				<tr>
-					<td> <?=$row["order_id"]?> </td>
+					<td> <?=$row["order_id"]?> </td>					
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> Facebook </th>
+				</tr>
+				<tr>
 					<td> <?=$row["facebookName"]?> </td>
-					<td> <?=$row["transport"]?> </td>
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> การจัดส่ง </th>
+				</tr>
+				<tr>
 					<?php if ($row["transport"] == 1) {?>
 						<td> ไปรษณีย์ </td>
 					<?php }elseif ($row["transport"] == 2) { ?>
 						<td> EMS </td>
 					<?php }elseif ($row["transport"] == 3) {?>
 						<td> Kerry </td>
-					<?php } ?>
-					
+					<?php } ?>			
 				</tr>
-			</tbody>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> วันที่สั่ง </th>
+				</tr>
+				<tr>
+					<td > <?=$row["orderDate"]?> </td>
+				</tr>
 		</table><br><br>
 
-		<table class="table table-hover">
-			<thead class="text-primary" style="font-size: 20px;">
+		<table class="table table-hover col-md-6 ">
 				<tr>
-					<th> ชื่อผู้รับ </th>
-					<th> ที่อยู่จัดส่ง </th>
-					<th> เลขไปรษณีย์ </th>
-					<th> เบอร์โทร </th>
-					<th> เลขที่พัสดุ </th>
+					<th class="text-primary" style="font-size: 18px;"> ชื่อผู้รับ </th>					
 				</tr>
-			</thead>
-			<tbody>
 				<tr>
-					<td> <?=$row["fullname"]?> </td>
+					<td> <?=$row["fullname"]?> </td>									
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> ที่อยู่จัดส่ง </th>
+				</tr>
+				<tr>
 					<td> <?=$row["address"]?> </td>
-					<td> <?=$row["address_zip"]?> </td>
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> เลขไปรษณีย์ </th>
+				</tr>
+				<tr>
+					<td > <?=$row["address_zip"]?> </td>
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> เบอร์โทร </th>
+				</tr>
+				<tr>
 					<td> <?=$row["phoneNumber"]?> </td>
+				</tr>
+				<tr>
+					<th class="text-primary" style="font-size: 18px;"> เลขที่พัสดุ </th>
+				</tr>
+				<tr>
 					<?php if ($row["track"] == NULL) { ?>
 						<td> รอการตรวจสอบ และ ดำเนินการ </td>
 					<?php } elseif ($row["track"] != NULL) { ?>
 						<td> <?=$row["track"]?> </td>
-					<?php } ?>					
+					<?php } ?>	
 				</tr>
-			</tbody>
 		</table>
+		</div>		
 	</div>
 
 
