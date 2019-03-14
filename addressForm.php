@@ -56,7 +56,7 @@ session_start();
 		    	<button type="submit" class="btn btn-primary mr-sm-2 mb-3"> <i class="fas fa-location-arrow"></i> Login </button>
 		    </form>
 		    <div class="form-inline mr-sm-2 mb-3">
-		    	<button class="btn btn-warning" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
+		    	<button class="btn btn-warning disabled" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
 		    </div>
 		  </div>
 	</nav>

@@ -7,7 +7,7 @@
 	$stmt->execute();
 	$row=$stmt->fetch();
 
-?>
+	if (!empty($row["order_id"])) { ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,19 +54,19 @@
 		      	<input class="search-txt mr-sm-2" type="search">
 		      	<button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
 		    </form>  
-		    <form action="login/login.php" method="post" class="form-inline">
+		    <form action="../login/login.php" method="post" class="form-inline">
 		    	<input type="text" name="member_username" placeholder="username" required="" class="form-control mr-sm-2 mb-3">
 		    	<input type="password" name="member_password" placeholder="password" required="" class="form-control mr-sm-2 mb-3">
 		    	<button type="submit" class="btn btn-primary mr-sm-2 mb-3"> <i class="fas fa-location-arrow"></i> Login </button>
 		    </form>
 		    <div class="form-inline mr-sm-2 mb-3">
-		    	<button class="btn btn-warning" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
+		    	<button class="btn btn-warning disabled" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
 		    </div>
 		  </div>
 	</nav>
 
 	<!-- Modal Check Track -->
-	<form action="checkTrack/check_track.php" method="post">
+	<form action="./check_track.php" method="post">
 		<div class="modal fade" id="checkTrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
@@ -196,4 +196,8 @@
 	</footer>
 
 </body>
-</html>
+</html>		
+	<?php } else {
+		setcookie('checkTrackError',1,time()+30,'/');
+		echo "<script type='text/javascript'> window.location.href = '../index.php';</script>";
+	} ?>

@@ -125,7 +125,7 @@ session_start();
 	</form>
 
 	<?php 
-		if (!empty($_SESSION["login_success"])){ ?>
+		if (!empty($_COOKIE["login_success"])){ ?>
 			<script type="text/javascript">
     			$(window).on('load',function(){
         			$('#success').alert('fade');

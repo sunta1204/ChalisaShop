@@ -53,7 +53,7 @@
 		    	<button type="submit" class="btn btn-primary mr-sm-2 mb-3"> <i class="fas fa-location-arrow"></i> Login </button>
 		    </form>
 		    <div class="form-inline mr-sm-2 mb-3">
-		    	<button class="btn btn-warning" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
+		    	<button class="btn btn-warning disabled" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
 		    </div>
 		  </div>
 	</nav>
@@ -109,10 +109,46 @@
 
 		
 			<div class="container" style="background-color: #f5f6fa; padding-top: 50px;padding-bottom: 100px;">
-
-				<form action="uploadProof/uploadProof.php" method="post" enctype="multipart/form-data">
+			
 			<?php 
-				if (!empty($_SESSION["order_success"])){ ?>
+				if (!empty($_COOKIE["checkTrackError"])){ ?>
+					<script type="text/javascript">
+    					$(window).on('load',function(){
+        					$('#checkTrackError').modal('show');
+    					});
+					</script>
+					<!-- Modal Check Track -->
+					<form action="checkTrack/check_track.php" method="post">
+						<div class="modal fade" id="checkTrackError" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 24px;">เช็คเลขพัสดุ</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      	<div class="form-group">
+						      		<label class="text-danger" style="font-size: 20px;"> ไม่พบเลขคำสั่งซื้อ กรุณากรอกใหม่. </label>
+						      	</div>
+						      	<div class="form-group">
+						      		<label class="text-primary" style="font-size: 20px;"> เลขคำสั่งซื้อของท่าน : </label>
+						      		<input type="text" name="track" placeholder="Track Number" required="" class="form-control">
+						      	</div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <button type="submit" class="btn btn-primary">Submit</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+					</form>
+			<?php } ?>
+
+			<?php 
+				if (!empty($_COOKIE["order_success"])){ ?>
 					<script type="text/javascript">
     					$(window).on('load',function(){
         					$('#success').modal('show');
@@ -139,6 +175,31 @@
 		  				</div>
 					</div>
 			<?php } ?>
+
+			<?php 
+		if (!empty($_COOKIE["login_error"])){ ?>
+			<script type="text/javascript">
+    			$(window).on('load',function(){
+        			$('#login_error').alert('fade');
+        				setTimeout(function(){
+        					$('#login_error').alert('close');
+        				}, 3000);
+    				});
+    				$('#login_error').click(function(){
+    					$('login_error').alert('close');
+    				});
+			</script>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert" id="login_error">
+				<center>
+					<strong>Login Error!</strong> Username หรือ Password ไม่ถูกต้อง.
+				</center>				
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php } ?>
+
+			<form action="uploadProof/uploadProof.php" method="post" enctype="multipart/form-data">
 			<div class="form-group" style="border: 5px solid; border-radius: 20px; border-color: white; padding: 10px;"> 
 				<label class="text-primary col-sm-12" style="font-size: 30px; text-align: center;"> คำสั่งซื้อ </label>
 			</div><br>

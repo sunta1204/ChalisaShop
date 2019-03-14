@@ -135,6 +135,28 @@ session_start();
 	</form>
 
 	<div class="container" style="background-color: #f5f6fa; padding-top: 50px;padding-bottom: 100px;">
+		<?php 
+		if (!empty($_COOKIE["update_success"])){ ?>
+			<script type="text/javascript">
+    			$(window).on('load',function(){
+        			$('#update_success').alert('fade');
+        				setTimeout(function(){
+        					$('#update_success').alert('close');
+        				}, 3000);
+    				});
+    				$('#update_success').click(function(){
+    					$('update_success').alert('close');
+    				});
+			</script>
+			<div class="alert alert-success alert-dismissible fade show" role="alert" id="update_success">
+				<center>
+					<strong>Update Success!</strong> การแก้ไขข้อมูลสำเร็จ.
+				</center>				
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+	<?php } ?>
 		<div class="form-inline d-flex justify-content-center">
 			<?php while ($row=$stmt->fetch()) { ?>
 				<div class="card-deck my-2 my-lg-0 mr-sm-2" style="padding-bottom: 30px;">				  
@@ -194,8 +216,8 @@ session_start();
 			</div><br><br>						
 		<?php } ?>
 
-			<form action="updateAddress" method="post">
-
+			<form action="updateAddress.php" method="post">
+				<input type="hidden" name="order_id" value="<?=$row4['order_id']?>">
 				<div class="form-row">
 					<div class="form-group col-md-6">		
 						<label class="text-primary col-sm-6" style="font-size: 18px; text-align: left;"> ชื่อผู้รับ : </label>

@@ -14,9 +14,8 @@ session_start();
 	$stmt->bindParam(4,$_POST["address_zip"]);
 	$stmt->bindParam(5,$_POST["phoneNumber"]);
 
-	$_SESSION["order_success"] = 1;
-
 	if($stmt->execute()){
+		setcookie('order_success',1,time()+60,'/');
 		echo "<script type='text/javascript'> window.location.href = '../index.php';</script>";
 	}else{
 		echo "Upload fail back to Home Page";
