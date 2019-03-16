@@ -43,17 +43,13 @@
 		      </li>		      
 		    </ul>
 		    
-		    <form class="form-inline  mr-sm-2 mb-3 search-box ">
-		      	<input class="search-txt mr-sm-2" type="search">
-		      	<button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
-		    </form>  
 		    <form action="login/login.php" method="post" class="form-inline">
 		    	<input type="text" name="member_username" placeholder="username" required="" class="form-control mr-sm-2 mb-3">
 		    	<input type="password" name="member_password" placeholder="password" required="" class="form-control mr-sm-2 mb-3">
 		    	<button type="submit" class="btn btn-primary mr-sm-2 mb-3"> <i class="fas fa-location-arrow"></i> Login </button>
 		    </form>
 		    <div class="form-inline mr-sm-2 mb-3">
-		    	<button class="btn btn-warning disabled" data-target="#register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
+		    	<button class="btn btn-warning disabled" data-target="##register" data-toggle="modal"><i class="fas fa-registered"></i> Register </button>
 		    </div>
 		  </div>
 	</nav>
@@ -107,8 +103,32 @@
 		</div>
 	</form>
 
+			<?php 
+			if (!empty($_COOKIE["logout_success"])){ ?>
+				<script type="text/javascript">
+	    			$(window).on('load',function(){
+	        			$('#logout_success').alert('fade');
+	        				setTimeout(function(){
+	        					$('#logout_success').alert('close');
+	        				}, 3000);
+	    				});
+	    				$('#logout_success').click(function(){
+	    					$('logout_success').alert('close');
+	    				});
+				</script>
+				<div class="alert alert-success alert-dismissible fade show" role="alert" id="logout_success">
+					<center>
+						<strong>Logout Success!</strong>
+					</center>				
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+		<?php } ?>
 		
 			<div class="container" style="background-color: #f5f6fa; padding-top: 50px;padding-bottom: 100px;">
+
+			
 			
 			<?php 
 				if (!empty($_COOKIE["checkTrackError"])){ ?>

@@ -198,6 +198,6 @@
 </body>
 </html>		
 	<?php } else {
-		setcookie('checkTrackError',1,time()+30,'/');
+		setcookie('checkTrackError',1,time()+10,'/');
 		echo "<script type='text/javascript'> window.location.href = '../index.php';</script>";
 	} ?>

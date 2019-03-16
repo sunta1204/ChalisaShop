@@ -17,11 +17,11 @@ session_start();
 		
 
 		if ($_SESSION['permission'] == 1) {
-			setcookie('login_success',1,time()+30,'/');
+			setcookie('login_success',1,time()+10,'/');
 			echo "<script type='text/javascript'> window.location.href = '../admin/admin_home.php';</script>";
 		}
 	} else {
-		setcookie('login_error',1,time()+30,'/');
+		setcookie('login_error',1,time()+10,'/');
 		echo "<script type='text/javascript'> window.location.href = '../index.php';</script>";
 	}
 ?>

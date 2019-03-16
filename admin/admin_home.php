@@ -15,6 +15,9 @@ session_start();
 	 	$email["member_email"] = $row2["member_email"];
 	 } 
 
+	 $stmt3=$pdo->prepare("SELECT * FROM orders , address WHERE orders.order_id = address.order_id GROUP BY address.order_id");
+	$stmt3->execute();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -147,6 +150,75 @@ session_start();
 			</div>
 	<?php } ?>
 
+	<?php 
+		if (!empty($_COOKIE["logout_error"])){ ?>
+			<script type="text/javascript">
+    			$(window).on('load',function(){
+        			$('#logout_error').alert('fade');
+        				setTimeout(function(){
+        					$('#logout_error').alert('close');
+        				}, 3000);
+    				});
+    				$('#logout_error').click(function(){
+    					$('logout_error').alert('close');
+    				});
+			</script>
+			<div class="alert alert-success alert-dismissible fade show" role="alert" id="logout_error">
+				<center>
+					<strong>Login Error!</strong> โปรดลองอีกครั้ง
+				</center>				
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+	<?php } ?>
+
+	<?php 
+		if (!empty($_COOKIE["delete_success"])){ ?>
+			<script type="text/javascript">
+    			$(window).on('load',function(){
+        			$('#delete_success').alert('fade');
+        				setTimeout(function(){
+        					$('#delete_success').alert('close');
+        				}, 3000);
+    				});
+    				$('#delete_success').click(function(){
+    					$('delete_success').alert('close');
+    				});
+			</script>
+			<div class="alert alert-success alert-dismissible fade show" role="alert" id="delete_success">
+				<center>
+					<strong>Delete Success!</strong> ลบรายการการสั่งซื้อสำเร็จ
+				</center>				
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+	<?php } ?>
+
+	<?php 
+		if (!empty($_COOKIE["delete_error"])){ ?>
+			<script type="text/javascript">
+    			$(window).on('load',function(){
+        			$('#delete_error').alert('fade');
+        				setTimeout(function(){
+        					$('#delete_error').alert('close');
+        				}, 3000);
+    				});
+    				$('#delete_error').click(function(){
+    					$('delete_error').alert('close');
+    				});
+			</script>
+			<div class="alert alert-danger alert-dismissible fade show" role="alert" id="delete_error">
+				<center>
+					<strong>Delete Error!</strong> เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง
+				</center>				
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+	<?php } ?>
+
 	<div style="margin-top: 50px;margin-bottom: 50px; padding-left: 10%;padding-right: 10%;">
 		<div class="form-inline d-flex justify-content-center">
 			<?php while ($row=$stmt->fetch()) { ?>
@@ -169,7 +241,7 @@ session_start();
 					      		<?php }  ?>					      		
 					      		<p class="card-text form-inline "> 
 					      			<a href="order_detail.php?order_id=<?=$row['order_id']?>" target="_blank" class=" btn btn-outline-primary btn-lg mr-sm-2"> รายละเอียด </a> 
-					      			<a href="delete_order.php?order_id=<?=$row['order_id']?>" class="btn btn-outline-danger btn-lg "> ลบรายการ </a>
+					      			<button class="btn btn-outline-danger btn-lg" data-target="#delete_order" data-toggle="modal"> ลบรายการ </button>
 					      		</p>					      		
 					    	</div>					    	
 					</div>				  		  
@@ -177,6 +249,36 @@ session_start();
 		<?php } ?>
 		</div>
 	</div>
+
+	<!-- Modal Delete -->
+	<form action="delete_order.php" method="post">
+		<div class="modal fade" id="delete_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 24px;">ลบรายการการสั่งซื้อ</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<div class="form-group">
+		      		<label class="text-primary" style="font-size: 20px;"> คุณแน่ใจหรือไม่ที่จะลบรายการสั่งซื้อนี้ ?? </label>
+		      		<?php 
+		      			while ( $row3=$stmt3->fetch()) { ?>
+		      				<input type="hidden" name="order_id" value="<?=$row3['order_id']?>">
+		      			<?php } ?>
+		      		
+		      	</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-primary">Submit</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
 
 	<footer style="background-color: #747d8c; padding: 24px;">
 		<div style="text-align: center;">

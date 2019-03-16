@@ -15,7 +15,7 @@ session_start();
 	$stmt->bindParam(5,$_POST["phoneNumber"]);
 
 	if($stmt->execute()){
-		setcookie('order_success',1,time()+60,'/');
+		setcookie('order_success',1,time()+10,'/');
 		echo "<script type='text/javascript'> window.location.href = '../index.php';</script>";
 	}else{
 		echo "Upload fail back to Home Page";

@@ -20,7 +20,7 @@ session_start();
 
 
 	if($stmt->execute()){		
-		setcookie('update_success',1,time()+30,'/');
+		setcookie('update_success',1,time()+10,'/');
 		echo "<script type='text/javascript'> window.location.href = 'order_detail.php?order_id=$order_id';</script>";
 	}else{
 		echo "Upload fail back to Home Page";
